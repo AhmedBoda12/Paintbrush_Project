@@ -1,3 +1,5 @@
+package views;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.Box;
@@ -13,6 +15,7 @@ public class ToolPanel extends JPanel {
     
 
     public ToolPanel() {
+        setBackground(Color.GREEN);
         setLayout(new FlowLayout(FlowLayout.CENTER));
 
         // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

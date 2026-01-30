@@ -1,3 +1,5 @@
+import views.PaintBrushFrame;
+
 public class App {
     public static void main(String[] args) throws Exception {
                   new PaintBrushFrame().setVisible(true);

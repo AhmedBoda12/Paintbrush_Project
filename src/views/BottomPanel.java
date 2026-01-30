@@ -1,3 +1,4 @@
+package views;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;

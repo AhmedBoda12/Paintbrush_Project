@@ -1,3 +1,4 @@
+package views;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
@@ -19,7 +20,7 @@ public class ColorPanel extends JPanel {
     public ColorPanel() {
 
         setLayout(new FlowLayout(FlowLayout.CENTER));
-
+        setBackground(Color.CYAN);
         blackBtn = new JToggleButton();
         redBtn = new JToggleButton();
         greenBtn = new JToggleButton();
@@ -30,6 +31,7 @@ public class ColorPanel extends JPanel {
         lineBtn = new JToggleButton("Line");
 
         resetBtn = new JButton("Reset");
+        
         // TODO add implmentation of each button
 
         // Colors btns theme
@@ -42,6 +44,8 @@ public class ColorPanel extends JPanel {
         colorGroup.add(redBtn);
         colorGroup.add(greenBtn);
         colorGroup.add(blueBtn);
+        
+      
         // Shape btns theme
         ButtonGroup shapeGroup = new ButtonGroup();
         shapeGroup.add(rectBtn);
