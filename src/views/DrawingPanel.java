@@ -41,7 +41,7 @@ public class DrawingPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 sPoint = e.getPoint();
 
-                if (tool == ToolType.FREE_HAND) {
+                if (tool == ToolType.FREE_HAND) { 
                     currentShape = new Freehand(currentColor);
                     ((Freehand) currentShape).addPoint(e.getPoint());
                 }
@@ -96,11 +96,16 @@ public class DrawingPanel extends JPanel {
         shapes.clear();
         repaint();
     }
+    
+    
+    
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+      
+
 
         for(MainShape s : shapes){
             s.draw(g2);
