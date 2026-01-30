@@ -16,10 +16,10 @@ import enums.ToolType;
 public class ColorPanel extends JPanel {
     JToggleButton redBtn, greenBtn, blueBtn, blackBtn;
 
-    // JToggleButton redBtn = new JToggleButton();
-    // JToggleButton greenBtn = new JToggleButton();
-    // JToggleButton blueBtn = new JToggleButton();
-    // JToggleButton blackBtn = new JToggleButton();
+    /*JToggleButton redBtn = new JToggleButton();
+    JToggleButton greenBtn = new JToggleButton();
+    JToggleButton blueBtn = new JToggleButton();
+    JToggleButton blackBtn = new JToggleButton();*/
 
 
     JToggleButton rectBtn, ovalBtn, lineBtn;
