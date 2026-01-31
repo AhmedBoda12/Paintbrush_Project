@@ -6,16 +6,22 @@ import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
+import enums.ToolType;
 
 public class ToolPanel extends JPanel {
     JToggleButton freeHandBtn, eraserBtn;
     JButton clearBtn;
     
+    DrawingPanel drawingPanel;
 
-    public ToolPanel() {
-        setBackground(Color.GREEN);
+    public ToolPanel(DrawingPanel drawingPanel) {
+        this.drawingPanel = drawingPanel;
+    
+        
         setLayout(new FlowLayout(FlowLayout.CENTER));
 
         // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -34,12 +40,24 @@ public class ToolPanel extends JPanel {
 
         // TODO add implmentation of each button
 
-        add(Box.createVerticalStrut(10));
+        add(Box.createHorizontalStrut(110));
         add(freeHandBtn);
-        add(Box.createVerticalStrut(10));
+        add(Box.createHorizontalStrut(120));
         add(eraserBtn);
-        add(Box.createVerticalStrut(10));
+        add(Box.createHorizontalStrut(140));
         add(clearBtn);
+      add(Box.createHorizontalStrut(150));
+add(new JLabel("Tools:"));
+// add(freeHandBtn);
+// add(eraserBtn);
+// add(clearBtn);
+freeHandBtn.addActionListener(e -> drawingPanel.tool = ToolType.FREE_HAND);
+
+eraserBtn.addActionListener(e -> drawingPanel.tool = ToolType.ERASER);
+
+clearBtn.addActionListener(e -> drawingPanel.clear());
+
+
 
         
     }

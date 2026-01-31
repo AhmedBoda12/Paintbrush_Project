@@ -10,14 +10,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
+import enums.ShapeType;
+import enums.ToolType;
+
 public class ColorPanel extends JPanel {
     JToggleButton redBtn, greenBtn, blueBtn, blackBtn;
+
+    // /*JToggleButton redBtn = new JToggleButton();
+    // JToggleButton greenBtn = new JToggleButton();
+    // JToggleButton blueBtn = new JToggleButton();
+    // JToggleButton blackBtn = new JToggleButton();*/
+
+
     JToggleButton rectBtn, ovalBtn, lineBtn;
     JButton resetBtn;
     JCheckBox dottedCheckBox, filledCheckBox;
     boolean selected = true;
 
-    public ColorPanel() {
+    DrawingPanel drawingPanel;
+
+public ColorPanel(DrawingPanel drawingPanel) {
+    this.drawingPanel = drawingPanel; 
+
 
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setBackground(Color.CYAN);
@@ -75,6 +89,30 @@ public class ColorPanel extends JPanel {
         add(filledCheckBox);
         add(Box.createHorizontalStrut(100));
         add(resetBtn);
+        blackBtn.addActionListener(e -> drawingPanel.currentColor = Color.BLACK);
+        redBtn.addActionListener(e -> drawingPanel.currentColor = Color.RED);
+        greenBtn.addActionListener(e -> drawingPanel.currentColor = Color.GREEN);
+        blueBtn.addActionListener(e -> drawingPanel.currentColor = Color.BLUE);
+rectBtn.addActionListener(e -> {
+    drawingPanel.tool = ToolType.SHAPE;
+    drawingPanel.shapeType = ShapeType.RECTANGLE;
+});
+
+ovalBtn.addActionListener(e -> {
+    drawingPanel.tool = ToolType.SHAPE;
+    drawingPanel.shapeType = ShapeType.OVAL;
+});
+
+lineBtn.addActionListener(e -> {
+    drawingPanel.tool = ToolType.SHAPE;
+    drawingPanel.shapeType = ShapeType.LINE;
+});
+
+        
+
+
+
 
     }
+
 }
