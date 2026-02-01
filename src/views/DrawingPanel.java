@@ -7,10 +7,8 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Stack;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
 import enums.ShapeType;
 import enums.ToolType;
 import models.Freehand;
@@ -29,44 +27,33 @@ public class DrawingPanel extends JPanel {
     public boolean filled = false;
     public boolean dotted = false;
     Point sPoint;
-    private int w, h;
 
     public DrawingPanel() {
-
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        MouseAdapter mouseAdapter = new MouseAdapter() {
+        initMouseListeners();
+    }
+
+    private void initMouseListeners() {
+        MouseAdapter handler = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 sPoint = e.getPoint();
-
                 if (tool == ToolType.FREE_HAND) {
                     currentShape = new Freehand(currentColor);
-                    ((Freehand) currentShape).addPoint(e.getPoint());
+                    ((Freehand) currentShape).addPoint(sPoint);
                 }
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
                 if (tool == ToolType.FREE_HAND) {
-                    ((Freehand) currentShape).addPoint(e.getPoint());
-                } else {
-                    w = e.getX() - sPoint.x;
-                    h = e.getY() - sPoint.y;
-
-                    switch (shapeType) {
-                        case RECTANGLE:
-                            currentShape = new RectangleShape(sPoint.x, sPoint.y, w, h, currentColor, filled, dotted);
-                            break;
-                        case OVAL:
-                            currentShape = new OvalShape(sPoint.x, sPoint.y, w, h, currentColor, filled, dotted);
-                            break;
-                        case LINE:
-                            currentShape = new LineShape(sPoint, e.getPoint(), currentColor, filled, dotted);
-                        default:
-                            break;
+                    if (currentShape instanceof Freehand) {
+                        ((Freehand) currentShape).addPoint(e.getPoint());
                     }
+                } else if (tool == ToolType.SHAPE) {
+                    currentShape = createShape(e.getPoint());
                 }
                 repaint();
             }
@@ -81,8 +68,24 @@ public class DrawingPanel extends JPanel {
             }
         };
 
-        addMouseListener(mouseAdapter);
-        addMouseMotionListener(mouseAdapter);
+        addMouseListener(handler);
+        addMouseMotionListener(handler);
+    }
+
+    private MainShape createShape(Point endPoint) {
+        if (shapeType == null)
+            return null;
+
+        int x = Math.min(sPoint.x, endPoint.x);
+        int y = Math.min(sPoint.y, endPoint.y);
+        int width = Math.abs(sPoint.x - endPoint.x);
+        int height = Math.abs(sPoint.y - endPoint.y);
+
+        return switch (shapeType) {
+            case RECTANGLE -> new RectangleShape(x, y, width, height, currentColor, filled, dotted);
+            case OVAL -> new OvalShape(x, y, width, height, currentColor, filled, dotted);
+            case LINE -> new LineShape(sPoint, endPoint, currentColor, filled, dotted);
+        };
     }
 
     public void undo() {
@@ -102,11 +105,11 @@ public class DrawingPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        for(MainShape s : shapes){
+        for (MainShape s : shapes) {
             s.draw(g2);
         }
 
-        if(currentShape !=null){
+        if (currentShape != null) {
             currentShape.draw(g2);
         }
 

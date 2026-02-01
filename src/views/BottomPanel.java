@@ -1,6 +1,5 @@
 package views;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,4 +17,6 @@ public class BottomPanel extends JPanel {
         add(saveBtn);
         add(openBtn);
     }
+   
+
 }

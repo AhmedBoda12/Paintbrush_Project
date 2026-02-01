@@ -10,16 +10,18 @@ public class PaintBrushFrame extends JFrame {
 
         setTitle("Paint Brush");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setSize(900, 600);
+        setSize(700, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
+    
         setLayout(new BorderLayout());
-
-        add(new ColorPanel(), BorderLayout.NORTH);
-        add(new ToolPanel(), BorderLayout.WEST);
-        add(new DrawingPanel(), BorderLayout.CENTER);
+    
+        DrawingPanel drawingPanel = new DrawingPanel();
+    
+        add(new ToolsPanel(drawingPanel), BorderLayout.NORTH);
+        add(drawingPanel, BorderLayout.CENTER);
         add(new BottomPanel(), BorderLayout.SOUTH);
     }
+    
 
 }
