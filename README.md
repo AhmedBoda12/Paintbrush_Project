@@ -1,18 +1,59 @@
 
+# Paintbrush
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A simple painting application built with Java.
 
-## Folder Structure
+## Author
 
-The workspace contains two folders by default, where:
+Ahmed Abouelella
+Noura Khalid
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Features
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- Draw shapes and freehand strokes
+- Customize colors
+- Clear canvas functionality
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Requirements
 
-## Dependency Management
+- Java 8 or higher
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Installation
+
+1. Clone or download the project
+2. Navigate to the project directory
+3. Compile: `javac -d bin src/*.java`
+4. Run: `java -cp bin Main`
+
+## Usage
+
+- Select a drawing tool from the toolbar
+- Click and drag on the canvas to draw or use freehand
+- Use the color picker to change colors
+- Use eraser to remove 
+- Click "ClearAll" to start over
+
+## Project Structure
+
+```
+Paintbrush/
+├── src/
+│   ├── enums
+|           ├── ShapeType.java
+|           ├── ToolType.java
+|   ├── models
+│           ├── Freehand.java
+|           ├── LineShape.java
+|           ├── MainShape.java
+|           ├── OvalShape.java
+|           ├── RectangleShape.java
+│   |── views
+│           ├── BottomPanel.java
+|           ├── DrawingPanel.java
+|           ├── PaintBrushFrame.java
+|           ├── ToolsPanel.java
+│   └── App.java
+└── README.md
+```
+
+
