@@ -41,14 +41,17 @@ public class DrawingPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 sPoint = e.getPoint();
                 if (tool == ToolType.FREE_HAND) {
-                    currentShape = new Freehand(currentColor);
+                    currentShape = new Freehand(currentColor, false);
+                    ((Freehand) currentShape).addPoint(sPoint);
+                } else if (tool == ToolType.ERASER) {
+                    currentShape = new Freehand(Color.white, true);
                     ((Freehand) currentShape).addPoint(sPoint);
                 }
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                if (tool == ToolType.FREE_HAND) {
+                if (tool == ToolType.FREE_HAND || tool == ToolType.ERASER) {
                     if (currentShape instanceof Freehand) {
                         ((Freehand) currentShape).addPoint(e.getPoint());
                     }

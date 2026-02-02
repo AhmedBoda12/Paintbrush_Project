@@ -20,7 +20,7 @@ public class PaintBrushFrame extends JFrame {
     
         add(new ToolsPanel(drawingPanel), BorderLayout.NORTH);
         add(drawingPanel, BorderLayout.CENTER);
-        add(new BottomPanel(), BorderLayout.SOUTH);
+        // add(new BottomPanel(), BorderLayout.SOUTH);
     }
     
 

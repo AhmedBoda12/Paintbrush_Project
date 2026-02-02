@@ -9,19 +9,27 @@ import java.util.ArrayList;
 public class Freehand extends MainShape {
 
     ArrayList<Point> points = new ArrayList<Point>();
+    boolean isEraser;
 
-    public Freehand(Color c) {
+    public Freehand(Color c, boolean e) {
         super(c, false, false);
+        isEraser = e;
     }
 
-    public void addPoint(Point p){
+    public void addPoint(Point p) {
         points.add(p);
     }
 
     @Override
     public void draw(Graphics2D g) {
-       g.setColor(color);
-       g.setStroke(new BasicStroke(2));
+        g.setColor(color);
+        if (isEraser) {
+            g.setStroke(new BasicStroke(8));
+
+        } else {
+            g.setStroke(new BasicStroke(2));
+
+        }
 
         for (int i = 0; i < points.size() - 1; i++) {
             Point p1 = points.get(i);
